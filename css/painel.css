@@ -1,0 +1,192 @@
+:root {
+    --sombra-color: #464646;
+    --button-desativado-color: #c5c3c3;
+    --button-ativo-color: #00BFFF;
+    --button-lock-color: #F08080;
+    --led-desativado-color: #002430;
+    --led-ativo-color: #00BFFF;
+    --painel-player: #726f6f;
+    --painel-computer: var(--led-desativado-color);
+}
+
+bodY {
+    margin: 0 auto;
+}
+
+.container {
+    margin: 20px auto;
+    max-width: 470px;
+}
+
+.painel {
+    width: 200px;
+    display: inline-block;
+    background-color: var(--painel-player);
+    border-radius: 10px;
+    border-bottom: 4px solid var(--sombra-color);
+    padding: 10px;
+    margin: 6px;
+}
+
+.leds {
+    display: flex;
+    justify-content: space-between;
+    padding: 0% 10%;
+    margin-bottom: 10px;
+}
+
+.turnOn {
+    background-color: var(--led-ativo-color) !important;
+}
+
+.leds>.led {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    font-size: 1.4em;
+    background-color: var(--led-desativado-color);
+}
+
+.box {
+    height: 200px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 180px;
+    height: 190px;
+    margin: 10px;
+    position: absolute;
+}
+
+.button {
+    width: 50px;
+    height: 50px;
+    display: block;
+    background-color: var(--button-desativado-color);
+    margin: 0 auto;
+    border-bottom: 4px solid var(--sombra-color);
+    border-radius: 2px;
+    border-top: 4px solid var(--button-desativado-color);
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.button:active {
+    background-color: var(--button-desativado-color);
+}
+
+.active {
+    border-bottom: 4px solid var(--painel-player);
+    border-top: 4px solid var(--painel-player);
+    background-color: var(--button-ativo-color);
+}
+
+.buttons.computer {
+    background-color: var(--painel-computer);
+}
+
+
+div.buttons.computer>.button {
+    border-bottom: 4px solid var(--painel-computer);
+    border-top: 4px solid var(--painel-computer);
+}
+
+
+.lock {
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.lightLockedButtons>.button {
+    background-color: var(--button-lock-color);
+    border-top-color: var(--button-lock-color);
+}
+
+div.buttons.computer>.button:not(.active) {
+    background-color: var(--painel-computer);
+}
+
+
+.winner {
+    background-color: yellow;
+    animation-name: winner-animation;
+    animation-duration: 0.5s;
+}
+
+@keyframes winner-animation {
+    0% {
+        background-color: var(--led-desativado-color);
+    }
+
+    25% {
+        background-color: var(--led-ativo-color);
+    }
+
+    50% {
+        background-color: var(--led-desativado-color);
+    }
+
+    100% {
+        background-color: var(--led-ativo-color);
+    }
+}
+
+.command {
+    position: absolute;
+    display: block;
+    height: 190px;
+    width: 180px;
+    background-color: var(--painel-computer);
+    margin: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.action {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.action span {
+    padding: 40px;
+    cursor: pointer;
+}
+
+.action span:hover {
+    color: yellow;
+}
+
+.blink {
+    animation: blink-animation 2s steps(6, start) infinite;
+    -webkit-animation: blink-animation 2s steps(6, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+@-webkit-keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .container {
+        width: 230px;
+    }
+}
